@@ -5,7 +5,6 @@ import { ThermometerHalf } from "react-bootstrap-icons";
 
 const CityDetails = () => {
   const params = useParams();
-  console.log("params", params);
   const [weatherInfo, setWeatherInfo] = useState({});
   const fetchCityWeater = () => {
     fetch(
@@ -19,7 +18,6 @@ const CityDetails = () => {
         }
       })
       .then((weatherObj) => {
-        console.log(weatherObj);
         setWeatherInfo(weatherObj);
       })
       .catch((error) => {
