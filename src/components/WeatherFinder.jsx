@@ -19,7 +19,6 @@ const WeatherFinder = () => {
         }
       })
       .then((weatherObj) => {
-        console.log(weatherObj);
         setWeather(weatherObj);
       })
       .catch((error) => {
@@ -29,59 +28,65 @@ const WeatherFinder = () => {
 
   return (
     <Container className="my-5">
-      <Row className="justify-content-center">
-        <Col xs={6} md={5} lg={4}>
-          <Form.Label htmlFor="cityInput">
-            I'm looking for the weather of:
-          </Form.Label>
-          <Form.Control
-            type="text"
-            id="cityInput"
-            aria-describedby="cityInput"
-            placeholder="Milan/New York/Tokyo..."
-            value={city}
-            onChange={(e) => {
-              setCity(e.target.value);
+      <div className="bg-info-subtle shadow rounded-4 py-5">
+        <Row className="justify-content-center">
+          <Col xs={6} md={5} lg={4}>
+            <Form.Label htmlFor="cityInput">
+              I'm looking for the weather of:
+            </Form.Label>
+            <Form.Control
+              type="text"
+              id="cityInput"
+              aria-describedby="cityInput"
+              placeholder="Milan/New York/Tokyo..."
+              value={city}
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
+            />
+            <Form.Text id="passwordHelpBlock" muted>
+              Enter the city you want to check the weather for (make sure to
+              spell it correctly!)
+            </Form.Text>
+          </Col>
+          <Col xs={6} md={5} lg={4}>
+            <Form.Label htmlFor="countryInput">Country code:</Form.Label>
+            <Form.Control
+              type="text"
+              id="countryInput"
+              aria-describedby="countryInput"
+              placeholder="IT/US/JP..."
+              value={countryCode}
+              onChange={(e) => {
+                setCountryCode(e.target.value);
+              }}
+            />
+            <Form.Text id="passwordHelpBlock" muted>
+              Enter the country code of the selected city (make sure to spell it
+              correctly!)
+            </Form.Text>
+          </Col>
+        </Row>
+        <div className="text-center my-3">
+          <Button
+            variant="primary"
+            onClick={() => {
+              fetchWeater();
             }}
-          />
-          <Form.Text id="passwordHelpBlock" muted>
-            Enter the city you want to check the weather for (make sure to spell
-            it correctly!)
-          </Form.Text>
-        </Col>
-        <Col xs={6} md={5} lg={4}>
-          <Form.Label htmlFor="countryInput">Country code:</Form.Label>
-          <Form.Control
-            type="text"
-            id="countryInput"
-            aria-describedby="countryInput"
-            placeholder="IT/US/JP..."
-            value={countryCode}
-            onChange={(e) => {
-              setCountryCode(e.target.value);
-            }}
-          />
-          <Form.Text id="passwordHelpBlock" muted>
-            Enter the country code of the selected city (make sure to spell it
-            correctly!)
-          </Form.Text>
-        </Col>
-      </Row>
-      <div className="text-center my-3">
-        <Button
-          variant="primary"
-          onClick={() => {
-            fetchWeater();
-          }}
-        >
-          Check Weather
-        </Button>
+          >
+            Check Weather
+          </Button>
+        </div>
+        <Row className="justify-content-center">
+          <Col xs={12} md={10} lg={8}>
+            <CityWeather
+              city={city}
+              country={countryCode}
+              weatherObj={weather}
+            />
+          </Col>
+        </Row>
       </div>
-      <Row className="justify-content-center">
-        <Col xs={12} md={10} lg={8}>
-          <CityWeather city={city} country={countryCode} weatherObj={weather} />
-        </Col>
-      </Row>
     </Container>
   );
 };

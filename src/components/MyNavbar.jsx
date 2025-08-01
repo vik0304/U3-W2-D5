@@ -1,15 +1,20 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 function MyNavbar() {
   return (
     <>
-      <Navbar bg="primary" data-bs-theme="dark">
+      <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">WeatherWise</Navbar.Brand>
+          <Link className="navbar-brand" to="/">
+            WeatherWise
+          </Link>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Link className="nav-link" href="#home">
+              Home
+            </Link>
             <Nav.Link href="#features" disabled>
               Work in Progress
             </Nav.Link>
